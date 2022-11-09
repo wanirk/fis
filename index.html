@@ -39,7 +39,7 @@ found.onclick=function(){
 	f=input.value.toLowerCase()
 	console.log(video.split(f).length)
 	if(ready){
-		if(video.split(f).length>1 && video.split(f).length<20){
+		if(video.split(f).length>1 && video.split(f).length<50){
 			for(let q=0;q<btn.length;q++){
 				btn[q].remove()
 				br[q].remove()
@@ -98,6 +98,8 @@ found.onclick=function(){
 			
 		}
 		
+	}else{
+		p.value+="К сожалению файлы, необходимые для поиска ещё не загружены. Подождите какое-то время и попробуйте снова"
 	}
 }
 
