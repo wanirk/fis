@@ -6,7 +6,7 @@
 
 <div id="p">
 
-<input id="input"></input>
+<input id="input" style="color:ffffff;background-color:000000"></input>
 <button id="btn">Поиск</button>
 </br>
 </div>
@@ -47,6 +47,8 @@ found.onclick=function(){
 			for(let q=0;q<video.split(f).length-1;q++){
 				href[q]=video.split(f)[q].split("\n")[video.split(f)[q].split("\n").length-1].split(":")[0];
 				btn[q]=document.createElement("button")
+				btn[q].style.color="ffffff"
+				btn[q].style.backgroundColor="000000"
 				br[q]=document.createElement("br")
 				btn[q].textContent=href[q]+video.split(href[q])[1].split("\n")[0]
 				btn[q].onclick=function(){
@@ -65,12 +67,18 @@ found.onclick=function(){
 					for(null;titles1.split(seasons+" сезон").length>1;seasons++){
 						div[seasons]=document.createElement("div")
 						div[seasons].style.width=200
-						table.appendChild(div[seasons]);
-						table.appendChild(document.createElement("th"))
+						if(screen.width>screen.height){
+							table.appendChild(div[seasons]);
+							table.appendChild(document.createElement("th"))
+						}else{
+							body.appendChild(div[seasons])
+						}
 					}
 					seasons=seasons
 					for(let i=0;i<vsrc.length;i++){
 						btn[i]=document.createElement("button")
+						btn[i].style.color="ffffff"
+						btn[i].style.backgroundColor="000000"
 						br[i]=document.createElement("br")
 						btn[i].textContent=title[i]
 						btn[i].onclick=function(){
