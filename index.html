@@ -66,6 +66,7 @@ found.onclick=function(){
 					setsrc(vsrc[0])
 					for(let i=0;i<video.split(f).length-1;i++){
 						btn[i].remove();
+						br[i].remove()
 					}
 					table=document.createElement("table")
 					body.appendChild(table)
@@ -84,6 +85,7 @@ found.onclick=function(){
 						btn[i]=document.createElement("button")
 						btn[i].style.color="ffffff"
 						btn[i].style.backgroundColor="000000"
+						btn[i].style.width=200
 						br[i]=document.createElement("br")
 						btn[i].textContent=title[i]
 						btn[i].onclick=function(){
