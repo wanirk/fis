@@ -79,31 +79,13 @@ xhr=new XMLHttpRequest();
 xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/video.txt")
 xhr.onload=function(){
 	video=xhr.response.toLowerCase();
-	xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/vsrc.txt")
-	xhr.onload=function(){
-		vsrcs=xhr.response;
-		xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/title.txt")
-		xhr.onload=function(){
-			titles=xhr.response.toLowerCase();
-			ready=true
-			if(par){
-				if(par.split("vsrc").length>1){
-					setsrc(par.split("vsrc=")[1]);
-				}
-				else if(par.split("href").length>1){
-					href=par.split("href=")[1].split("&")[0]
-					console.log(href)
-					sethref(href)
-				}
-				else{
-					console.log(par)
-				}
-			}
-
+	ready=true;
+	if(par){
+		if(par.split("href=").length>1){
+			sethref(par.split("href=")[1]);
 		}
-		xhr.send()
+		
 	}
-	xhr.send()
 }
 xhr.send();
 
@@ -115,44 +97,51 @@ function setsrc(url){
 
 }
 function sethref(href){
-	vsrcs1=vsrcs.split(href+":")[1].split(";")[0]
-	titles1=titles.split(href+":")[1].split(";")[0]
-	console.log(vsrcs1)
-	console.log(titles1)
-	title=titles1.split(",")
-	vsrc=vsrcs1.split(",")
-	setsrc(vsrc[0])
-	for(let i=0;i<video.split(f).length-1;i++){
-		btn[i].remove();
-		br[i].remove()
-	}
-	table=document.createElement("table")
-	body.appendChild(table)
-	for(null;titles1.split(seasons+" сезон").length>1;seasons++){
-		div[seasons]=document.createElement("div")
-		div[seasons].style.width=200
-		if(screen.width>screen.height){
-			table.appendChild(div[seasons]);
-			table.appendChild(document.createElement("th"))
-		}else{
-			body.appendChild(div[seasons])
+	console.log(href);
+	xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/files/"+href+".txt");
+	xhr.send();
+	titles1="";
+	xhr.onload=function(){
+		vsrcs=xhr.response;
+		for(let i=0;i<vsrcs.split(";").length;i++){
+			title[i]=vsrcs.split(";")[i].split(":")[0]
+			vsrc[i]=vsrcs.split(";")[i].split(":")[1]
+			titles1+=title[i]
 		}
-	}
-	seasons=seasons
-	for(let i=0;i<vsrc.length;i++){
-		btn[i]=document.createElement("button")
-		btn[i].style.color="ffffff"
-		btn[i].style.backgroundColor="000000"
-		btn[i].style.width=200
-		br[i]=document.createElement("br")
-		btn[i].textContent=title[i]
-		btn[i].onclick=function(){
-			setsrc(vsrc[i])
+	
+		setsrc(vsrc[0])
+		for(let i=0;i<video.split(f).length-1;i++){
+			btn[i].remove();
+			br[i].remove()
 		}
-		
-		for(i1=1;i1<seasons;i1++){
-			if(title[i].split(i1+" сезон").length>1){
-				div[i1].appendChild(btn[i])
+		table=document.createElement("table")
+		body.appendChild(table)
+		for(null;titles1.split(seasons+" сезон").length>1;seasons++){
+			div[seasons]=document.createElement("div")
+			div[seasons].style.width=200
+			if(screen.width>screen.height){
+				table.appendChild(div[seasons]);
+				table.appendChild(document.createElement("th"))
+			}else{
+				body.appendChild(div[seasons])
+			}
+		}
+		seasons=seasons
+		for(let i=0;i<vsrc.length;i++){
+			btn[i]=document.createElement("button")
+			btn[i].style.color="ffffff"
+			btn[i].style.backgroundColor="000000"
+			btn[i].style.width=200
+			br[i]=document.createElement("br")
+			btn[i].textContent=title[i]
+			btn[i].onclick=function(){
+				setsrc(vsrc[i])
+			}
+			
+			for(i1=1;i1<seasons;i1++){
+				if(title[i].split(i1+" сезон").length>1){
+					div[i1].appendChild(btn[i])
+				}
 			}
 		}
 	}
