@@ -1,12 +1,12 @@
 <title>fis</title>
 <body id="body">
 
-<video controls  id="v" ></video>
+<video controls  id="v" style="width:100%"></video>
 
 
 <div id="p">
 
-<input id="input" style="color:ffffff;background-color:000000"></input>
+<input id="input" style="color:ffffff;background-color:000000;width:100%"></input>
 <button id="btn">Поиск</button>
 </br>
 </div>
@@ -57,7 +57,7 @@ found.onclick=function(){
 				br[q]=document.createElement("br")
 				btn[q].textContent=href[q]+video.split(href[q])[1].split("\n")[0]
 				btn[q].onclick=function(){
-					sethref(href[q])
+					location.search="?href="+href[q]
 				}
 				p.appendChild(btn[q])
 				p.appendChild(br[q])
@@ -66,14 +66,17 @@ found.onclick=function(){
 		}
 		
 	}else{
-		p.value+="К сожалению файлы, необходимые для поиска ещё не загружены. Подождите какое-то время и попробуйте снова"
+		er=document.createElement("p");
+		er.textContent="К сожалению файлы, необходимые для поиска ещё не загружены. Подождите какое-то время и попробуйте снова"
+		p.appendChild(er)
 	}
 }
 
 
 
 par=location.search
-
+width=screen.width;
+height=screen.height
 var video=null
 xhr=new XMLHttpRequest();
 xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/video.txt")
@@ -115,10 +118,11 @@ function sethref(href){
 			br[i].remove()
 		}
 		table=document.createElement("table")
+		table.style.width="100%"
 		body.appendChild(table)
 		for(null;titles1.split(seasons+" сезон").length>1;seasons++){
 			div[seasons]=document.createElement("div")
-			div[seasons].style.width=200
+			div[seasons].style.width=100
 			if(screen.width>screen.height){
 				table.appendChild(div[seasons]);
 				table.appendChild(document.createElement("th"))
@@ -127,11 +131,12 @@ function sethref(href){
 			}
 		}
 		seasons=seasons
+		btnwdth=(width-screenX)/(seasons-1)
 		for(let i=0;i<vsrc.length;i++){
 			btn[i]=document.createElement("button")
 			btn[i].style.color="ffffff"
 			btn[i].style.backgroundColor="000000"
-			btn[i].style.width=200
+			btn[i].style.width=btnwdth
 			br[i]=document.createElement("br")
 			btn[i].textContent=title[i]
 			btn[i].onclick=function(){
@@ -139,6 +144,7 @@ function sethref(href){
 			}
 			
 			for(i1=1;i1<seasons;i1++){
+				div[i1].style.width=btnwdth
 				if(title[i].split(i1+" сезон").length>1){
 					div[i1].appendChild(btn[i])
 				}
