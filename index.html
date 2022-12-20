@@ -33,7 +33,7 @@ input.style.Color="000000"
 
 btnwdth=0
 mob=(screen.width<screen.height)
-
+//mob=true
 body=document.getElementById("body");
 body.bgColor="202020"
 hls=new Hls();
@@ -139,15 +139,15 @@ function sethref(href){
 		seasons=seasons
 		if(!mob)btnwdth=(width-screenX)/(seasons-1)
 		for(let i=0;i<vsrc.length;i++){
-			if(mob){
-				btn[i].style.fontSize=24
-			}
 			btn[i]=document.createElement("button")
 			btn[i].style.color="ffffff"
 			btn[i].style.backgroundColor="000000"
 			btn[i].style.width=btnwdth
 			br[i]=document.createElement("br")
 			btn[i].textContent=title[i]
+			if(mob){
+				btn[i].style.fontSize=24
+			}
 			btn[i].onclick=function(){
 				setsrc(vsrc[i])
 			}
