@@ -31,6 +31,7 @@ input.style.backgroundColor="fffffff"
 input.style.Color="000000"
 
 
+btnwdth=0
 
 body=document.getElementById("body");
 body.bgColor="202020"
@@ -126,12 +127,15 @@ function sethref(href){
 			if(screen.width>screen.height){
 				table.appendChild(div[seasons]);
 				table.appendChild(document.createElement("th"))
-			}else{
-				body.appendChild(div[seasons])
 			}
+			else{
+				body.appendChild(div[seasons])
+				btnwdth=width-screenX
+			}
+			
 		}
 		seasons=seasons
-		btnwdth=(width-screenX)/(seasons-1)
+		if(btnwdth==0)btnwdth=(width-screenX)/(seasons-1)
 		for(let i=0;i<vsrc.length;i++){
 			btn[i]=document.createElement("button")
 			btn[i].style.color="ffffff"
