@@ -137,7 +137,7 @@ function sethref(href){
 			
 		}
 		seasons=seasons
-		if(mob)btnwdth=(width-screenX)/(seasons-1)
+		if(!mob)btnwdth=(width-screenX)/(seasons-1)
 		for(let i=0;i<vsrc.length;i++){
 			if(mob){
 				btn[i].style.fontSize=24
