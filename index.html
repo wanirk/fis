@@ -113,8 +113,12 @@ function sethref(href){
 			vsrc[i]=vsrcs.split(";")[i].split(":")[1]
 			titles1+=title[i]
 		}
-	
-		setsrc(vsrc[0])
+		if(vsrc[0]){
+			setsrc(vsrcх0ъ);
+		}
+		else{
+			setsrc(vsrcs)
+		}
 		for(let i=0;i<video.split(f).length-1;i++){
 			btn[i].remove();
 			br[i].remove()
