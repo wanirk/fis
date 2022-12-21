@@ -91,7 +91,7 @@ found.onclick=function(){
 
 
 if(mob){
-	v.style.width=width
+	v.style.width="100%"
 	input.style.width="100%"
 	input.style.fontSize=mts
 	found.style.fontSize=mts
@@ -156,7 +156,7 @@ function sethref(href){
 			else{
 				body.appendChild(div[seasons])
 				btnwdth=width-screenX
-				div[seasons].style.width=btnwdth
+				div[seasons].style.width=width
 			}
 			
 		}
@@ -179,7 +179,7 @@ function sethref(href){
 			}
 			
 			for(i1=1;i1<seasons;i1++){
-				div[i1].style.width=btnwdth
+				div[i1].style.width="100%"
 				if(title[i].split(i1+" сезон").length>1){
 					div[i1].appendChild(btn[i])
 				}
