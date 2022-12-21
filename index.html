@@ -42,6 +42,7 @@ vsrc=[]
 title=[]
 div=[]
 seasons=1
+mts-48 //mobile text size
 found=document.getElementById("btn");
 found.onclick=function(){
 	f=input.value.toLowerCase()
@@ -64,7 +65,7 @@ found.onclick=function(){
 					location.search="?href="+href[q]
 				}
 				if(mob){
-					btn[q].style.fontSize=24
+					btn[q].style.fontSize=mts
 				}
 				
 				p.appendChild(btn[q])
@@ -111,8 +112,8 @@ function sethref(href){
 	if(mob){
 		v.style.width="100%"
 		input.style.width="100%"
-		input.style.fontSize=24
-		found.style.fontSize=24
+		input.style.fontSize=mts
+		found.style.fontSize=mts
 		
 	}
 	console.log(href);
@@ -164,7 +165,7 @@ function sethref(href){
 			br[i]=document.createElement("br")
 			btn[i].textContent=title[i]
 			if(mob){
-				btn[i].style.fontSize=24
+				btn[i].style.fontSize=mts
 				btn[i].style.width="100%"
 			}
 			btn[i].onclick=function(){
