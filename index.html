@@ -31,10 +31,18 @@ v=document.getElementById("v")
 input=document.getElementById("input")
 input.style.backgroundColor="fffffff"
 input.style.Color="000000"
+par=location.search
+width=screen.width;
+height=screen.height
+var video=null
+
+
 
 btnwdth=0
 mob=(screen.width<screen.height)
 //mob=true
+
+
 body=document.getElementById("body");
 body.bgColor="202020"
 hls=new Hls();
@@ -82,11 +90,16 @@ found.onclick=function(){
 }
 
 
+if(mob){
+	v.style.width=width
+	input.style.width="100%"
+	input.style.fontSize=mts
+	found.style.fontSize=mts
+	
+}
 
-par=location.search
-width=screen.width;
-height=screen.height
-var video=null
+
+
 xhr=new XMLHttpRequest();
 xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/video.txt")
 xhr.onload=function(){
@@ -109,13 +122,6 @@ function setsrc(url){
 
 }
 function sethref(href){
-	if(mob){
-		v.style.width=width
-		input.style.width="100%"
-		input.style.fontSize=mts
-		found.style.fontSize=mts
-		
-	}
 	console.log(href);
 	xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/files/"+href+".txt");
 	xhr.send();
