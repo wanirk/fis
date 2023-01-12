@@ -50,7 +50,7 @@ vsrc=[]
 title=[]
 div=[]
 seasons=1
-mts=48 //mobile text size
+mts=96 //mobile text size
 found=document.getElementById("btn");
 found.onclick=function(){
 	f=input.value.toLowerCase()
@@ -101,6 +101,7 @@ if(mob){
 
 
 xhr=new XMLHttpRequest();
+xhr1=new XMLHttpRequest();
 xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/video.txt")
 xhr.onload=function(){
 	video=xhr.response.toLowerCase();
@@ -123,16 +124,22 @@ function setsrc(url){
 }
 function sethref(href){
 	console.log(href);
-	xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/files/"+href+".txt");
-	xhr.send();
+	//xhr.open("GET","https://raw.githubusercontent.com/wanirk/fis/main/files/"+href+".txt");
+	xhr1.open("GET","https://api.loadbox.ws/embed/movie/"+href);
+	//xhr.send();
+	xhr1.send();
 	titles1="";
-	xhr.onload=function(){
-		vsrcs=xhr.response;
-		for(let i=0;i<vsrcs.split(";").length;i++){
-			title[i]=vsrcs.split(";")[i].split(":")[0]
-			vsrc[i]=vsrcs.split(";")[i].split(":")[1]
+	xhr1.onload=function(){
+		//vsrcs=xhr.response;
+		vsrcs1=xhr1.response;
+		name=video.split(href+":")[1].split(";")[0].toLowerCase();
+		console.log(name);
+		for(let i=0;i<vsrcs1.split("hls\"").length-1;i++){
+			vsrc[i]=vsrcs1.split("\"hls\":\"https://")[i+1].split("/master")[0]
+			title[i]=vsrcs1.toLowerCase().split("\""+name)[i+1].split("\"")[0];
 			titles1+=title[i]
 		}
+		console.log(vsrc);
 		if(vsrc[0]){
 			setsrc(vsrc[0]);
 		}
